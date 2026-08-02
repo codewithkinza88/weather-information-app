@@ -72,11 +72,7 @@ The app communicates with the [OpenWeatherMap Current Weather API](https://openw
 
 ![Error Handling & Goodbye Screen](screenshots/demo2.png)
 
-### Additional Screenshots
-
-![Dashboard — Forecast View](screenshots/demo3.png)
-
-![Dashboard — Settings View](screenshots/demo4.png)
+<!-- Additional screenshots removed — repository uses two demo images: demo1.png and demo2.png -->
 
 ---
 
@@ -183,8 +179,6 @@ weather-information-app/
 └── screenshots/
     ├── demo1.png          # Main dashboard
     └── demo2.png          # Error handling
-    ├── demo3.png          # Additional dashboard state (replace with real screenshot)
-    └── demo4.png          # Alternate UI state (replace with real screenshot)
 ```
 
 ---
