@@ -350,7 +350,7 @@ Distributed under the **MIT License**. See [LICENSE](LICENSE) for details.
 **Kinza Kareem**
 
 - GitHub: https://github.com/codewithkinza88
-- LinkedIn: https://linkedin.com/in/kinza-kareem
+- LinkedIn: https://www.linkedin.com/in/kinza-kareem-0a7591420/
 
 ---
 
