@@ -1,6 +1,6 @@
 # 🌤️ Weather Information App
 
-**A modern, production-grade command-line interface weather dashboard powered by OpenWeatherMap and rendered with rich aesthetics.**
+**A modern command-line interface weather dashboard powered by OpenWeatherMap and rendered with Rich.**
 
 ---
 
@@ -12,8 +12,9 @@
 ---
 
 ## 📖 Table of Contents
-
+]
 - [Overview](#-overview)
+- [Technologies Used](#-technologies-used)
 - [Key Features](#-key-features)
 - [System Architecture](#-system-architecture)
 - [Application Data Flow](#-application-data-flow)
@@ -33,9 +34,21 @@
 
 ## 🌍 Overview
 
-The **Weather Information App** is a highly polished, professional Command-Line Interface (CLI) application that delivers real-time weather analytics for cities globally. Built with Python 3.10+, it bridges the gap between basic CLI tools and modern graphical interfaces by generating an interactive terminal dashboard. 
+The **Weather Information App** is a polished Command-Line Interface (CLI) application that delivers real-time weather analytics for cities globally. Built with Python 3.10+, it provides an interactive terminal dashboard. 
 
-The application utilizes a clean separation-of-concerns pattern to query the [OpenWeatherMap Current Weather API](https://openweathermap.org/current), parse complex JSON payloads into robust data structures, validate inputs against strict patterns, and present an optimized UI using the [Rich](https://github.com/Textualize/rich) Python library.
+The application utilizes a clean separation-of-concerns pattern to query the [OpenWeatherMap Current Weather API](https://openweathermap.org/current), parse JSON payloads into structured data models, validate inputs, and present an optimized UI using the [Rich](https://github.com/Textualize/rich) library.
+
+---
+
+## 🛠 Technologies Used
+
+- Python 3.10+
+- Requests
+- Rich
+- python-dotenv
+- Pytest
+- Ruff
+- MyPy
 
 ---
 
@@ -47,9 +60,9 @@ The application utilizes a clean separation-of-concerns pattern to query the [Op
 | 🌬️ **Wind Metrics** | Identifies wind speeds (m/s) and automatically maps degrees to standard cardinal compass directions (e.g., N, NE, SSW). |
 | 🌅 **Astronomical Details** | Calculates and displays exact local sunrise/sunset times adjusted dynamically to the target city's timezone. |
 | 📍 **Geolocation Context** | Details precise latitude, longitude coordinates, and country indicators for search queries. |
-| 🎨 **Dynamic UI Engine** | Employs Rich panels, sub-tables, color gradients, micro-symbol indicators, and border layouts for a seamless dark-theme terminal experience. |
-| 🛡️ **Defensive validation** | Implements pre-flight input sanitization to catch empty, numeric, excessively long, or invalid Unicode queries before calling external APIs. |
-| 🚦 **Resilient Logging** | Features a rotating file logger keeping up to 5MB logs across multiple generations to maintain zero terminal clutter. |
+| 🎨 **Terminal UI Engine** | Employs Rich panels, sub-tables, color gradients, micro-symbol indicators, and border layouts for a seamless dark-theme terminal experience. |
+| 🛡️ **Input Validation** | Implements pre-flight input sanitization to catch empty, numeric, excessively long, or invalid Unicode queries before calling external APIs. |
+| 🚦 **Error & Activity Logging** | Features a rotating file logger keeping up to 5MB logs across multiple generations to maintain zero terminal clutter. |
 
 ---
 
@@ -66,14 +79,14 @@ The project is structured around a strict modular design, dividing core behavior
                         │
           ┌─────────────┼─────────────┐
           ▼             ▼             ▼
-   [ Network Layer ] [ Parse Layer ] [ UI Render ]
-   weather_service.py   parser.py       display.py
-          │
-          ▼
-   ┌──────────────┐
-   │ OpenWeather  │
-   │ Map API v2.5 │
-   └──────────────┘
+    [ Network Layer ] [ Parse Layer ] [ UI Render ]
+    weather_service.py   parser.py       display.py
+           │
+           ▼
+    ┌──────────────┐
+    │ OpenWeather  │
+    │ Map API v2.5 │
+    └──────────────┘
 
   ┌────────────────────────────────────────────────────────┐
   │ Shared Utilities: exceptions.py, config.py, logger.py  │
@@ -82,13 +95,13 @@ The project is structured around a strict modular design, dividing core behavior
 
 ### Module Responsibilities
 
-1. **[weather_app.py](file:///e:/Weather%20Information%20App/weather_app.py)**: The central controller managing the runtime lifecycle, interactive input loops, and overall exception routing.
-2. **[weather_service.py](file:///e:/Weather%20Information%20App/weather_service.py)**: Manages network requests, custom API headers, HTTP error dispatching, and user-input validation rules.
-3. **[parser.py](file:///e:/Weather%20Information%20App/parser.py)**: A stateless utility that parses dynamic JSON dictionaries into a typed, structured `WeatherData` object.
-4. **[display.py](file:///e:/Weather%20Information%20App/display.py)**: Houses formatting methods, panel styling, color layouts, and interactive terminal prompts.
-5. **[config.py](file:///e:/Weather%20Information%20App/config.py)**: Central source of truth for global constants, path helpers, and API credentials loaded safely from environment files.
-6. **[exceptions.py](file:///e:/Weather%20Information%20App/exceptions.py)**: Implements custom domain exception types.
-7. **[logger.py](file:///e:/Weather%20Information%20App/logger.py)**: Sets up professional logging streams to rotatable local logfiles.
+1. **[weather_app.py](weather_app.py)**: The central controller managing the runtime lifecycle, interactive input loops, and overall exception routing.
+2. **[weather_service.py](weather_service.py)**: Manages network requests, custom API headers, HTTP error dispatching, and user-input validation rules.
+3. **[parser.py](parser.py)**: A stateless utility that parses dynamic JSON dictionaries into a typed, structured `WeatherData` object.
+4. **[display.py](display.py)**: Houses formatting methods, panel styling, color layouts, and interactive terminal prompts.
+5. **[config.py](config.py)**: Central source of truth for global constants, path helpers, and API credentials loaded safely from environment files.
+6. **[exceptions.py](exceptions.py)**: Implements custom domain exception types.
+7. **[logger.py](logger.py)**: Sets up professional logging streams to rotatable local logfiles.
 
 ---
 
@@ -131,13 +144,13 @@ The project is structured around a strict modular design, dividing core behavior
 
 Each script in the application has a singular, dedicated responsibility:
 
-* **[weather_app.py](file:///e:/Weather%20Information%20App/weather_app.py)**: The main entry point. Houses the main loop, coordinates data transitions between modules, handles unhandled exceptions gracefully, and prints the startup banner.
-* **[weather_service.py](file:///e:/Weather%20Information%20App/weather_service.py)**: The remote communicator. Uses the `requests` library to fetch current weather details. Provides city name input validation (blocking empty, numeric, or excessively long/corrupt strings).
-* **[parser.py](file:///e:/Weather%20Information%20App/parser.py)**: The raw data transformer. Converts the raw nested OpenWeatherMap API JSON response dictionary into a flat, typed data structure. Automatically maps wind angles to cardinal directions and timestamp integers to formatted local time strings.
-* **[display.py](file:///e:/Weather%20Information%20App/display.py)**: The console renderer. Contains Rich layout specifications, color parameters, grids, panels, horizontal rules, and terminal prompts. Completely decoupled from network or disk operations for effortless testing.
-* **[config.py](file:///e:/Weather%20Information%20App/config.py)**: Configuration repository. Loads environment details (via `python-dotenv`), manages fallback options, sets request timeouts, and defines standard temperature and speed unit designations.
-* **[exceptions.py](file:///e:/Weather%20Information%20App/exceptions.py)**: Custom domain exceptions framework. Extends from a base `WeatherAppError` to capture precise API, network, rate limits, parsing, or setup errors.
-* **[logger.py](file:///e:/Weather%20Information%20App/logger.py)**: The telemetry framework. Implements file logging via a `RotatingFileHandler` with 5MB maximum space and three backup files, keeping runtime errors logged without polluting user terminals.
+* **[weather_app.py](weather_app.py)**: The main entry point. Houses the main loop, coordinates data transitions between modules, handles unhandled exceptions gracefully, and prints the startup banner.
+* **[weather_service.py](weather_service.py)**: The remote communicator. Uses the `requests` library to fetch current weather details. Provides city name input validation (blocking empty, numeric, or excessively long/corrupt strings).
+* **[parser.py](parser.py)**: The raw data transformer. Converts the raw nested OpenWeatherMap API JSON response dictionary into a flat, typed data structure. Automatically maps wind angles to cardinal directions and timestamp integers to formatted local time strings.
+* **[display.py](display.py)**: The console renderer. Contains Rich layout specifications, color parameters, grids, panels, horizontal rules, and terminal prompts. Completely decoupled from network or disk operations for effortless testing.
+* **[config.py](config.py)**: Configuration repository. Loads environment details (via `python-dotenv`), manages fallback options, sets request timeouts, and defines standard temperature and speed unit designations.
+* **[exceptions.py](exceptions.py)**: Custom domain exceptions framework. Extends from a base `WeatherAppError` to capture precise API, network, rate limits, parsing, or setup errors.
+* **[logger.py](logger.py)**: The telemetry framework. Implements file logging via a `RotatingFileHandler` with 5MB maximum space and three backup files, keeping runtime errors logged without polluting user terminals.
 
 ---
 
@@ -155,7 +168,7 @@ weather-information-app/
 ├── logger.py             # Rotating log handling configurations
 │
 ├── requirements.txt      # Pin-point project dependencies
-├── README.md             # Premium user guide (This file)
+├── README.md             # Project documentation (This file)
 ├── LICENSE               # MIT License metadata
 ├── CHANGELOG.md          # Version details & changes
 ├── .gitignore            # Version control exclusions
@@ -303,16 +316,16 @@ pytest tests/ -v --cov=. --cov-report=term-missing
 ```
 
 ### Coverage Breakdowns
-* **[test_validation.py](file:///e:/Weather%20Information%20App/tests/test_validation.py)**: Validates input sanitization rules.
-* **[test_parser.py](file:///e:/Weather%20Information%20App/tests/test_parser.py)**: Ensures date math, compass directions, and icons map correctly under all conditions.
-* **[test_api.py](file:///e:/Weather%20Information%20App/tests/test_api.py)**: Evaluates response handling (including offline, timeout, 404, 401, and 500 statuses).
-* **[test_display.py](file:///e:/Weather%20Information%20App/tests/test_display.py)**: Captures console output to ensure terminal elements render properly.
+* **[test_validation.py](tests/test_validation.py)**: Validates input sanitization rules.
+* **[test_parser.py](tests/test_parser.py)**: Ensures date math, compass directions, and icons map correctly under all conditions.
+* **[test_api.py](tests/test_api.py)**: Evaluates response handling (including offline, timeout, 404, 401, and 500 statuses).
+* **[test_display.py](tests/test_display.py)**: Captures console output to ensure terminal elements render properly.
 
 ---
 
 ## 🔐 Security & Logging Standards
 
-* **Credential Protection**: The application loads the API key from variables read directly out of RAM. Keys are never written to hard drives or captured logs.
+* **Credential Protection**: The application loads the API key from environment variables. Keys are never written to disk or captured in log files.
 * **Secure Logs**: Logs are kept locally in rotating files inside the `logs/` folder. They contain warnings, errors, and system activity records with time stamps, without violating user privacy.
 
 ---
@@ -336,14 +349,17 @@ Distributed under the **MIT License**. See [LICENSE](LICENSE) for details.
 
 **Kinza Kareem**
 
-🐙 **GitHub**: [@codewithkinza88](https://github.com/codewithkinza88)
-
-*_Built with dedication and precision_*
+- GitHub: https://github.com/codewithkinza88
+- LinkedIn: https://linkedin.com/in/kinza-kareem
 
 ---
 
 <div align="center">
 
-🌟 **If you find this utility useful, consider starring the repository!** 🌟
+If this project helped you, please give it a star! ⭐
+
+Made with ❤️ and ☕ using Python & Rich
+
+*Made with dedication and precision*
 
 </div>
