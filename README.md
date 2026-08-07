@@ -235,7 +235,7 @@ Distributed under the [MIT License](LICENSE).
 Crafted with a focus on clarity, presentation, and real-world usability.
 
 - GitHub: https://github.com/codewithkinza88
-- LinkedIn: https://linkedin.com/in/kinza-kareem
+- LinkedIn: https://www.linkedin.com/in/kinza-kareem-0a7591420/
 
 ---
 
